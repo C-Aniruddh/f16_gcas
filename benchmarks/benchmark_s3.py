@@ -1,3 +1,4 @@
+from numpy import array
 from pystaliro import staliro
 from pystaliro.models import Blackbox
 from pystaliro.options import Options, SignalOptions
@@ -9,14 +10,14 @@ from ._autotrans import simulate_autotrans
 
 
 def _s3_blackbox(_, T, u):
-    results = simulate_autotrans(_, T, u)
-    return results[0]
+    signals, times = simulate_autotrans(_, T, u)
+    return signals[0], times
 
 
 class BenchmarkS3(Benchmark):
     def __init__(self):
         self.phi = "[]_[0, 30] ((!(gear1) /\ X (gear1))-> X []_[0, 2.5] (gear1))"
-        self.preds = {"gear1": Predicate("gear1", [], [])}
+        self.preds = {"gear1": Predicate("gear1", array([1]), [])}
         self.options = Options(
             runs=50,
             iterations=100,
