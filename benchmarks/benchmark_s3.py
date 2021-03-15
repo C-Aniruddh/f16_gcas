@@ -1,16 +1,16 @@
 from pystaliro import staliro
 from pystaliro.models import Blackbox
 from pystaliro.options import Options, SignalOptions
-from pystaliro.optimizers import dual_annealing
+from pystaliro.optimizers import partitioning
 from tltk_mtl import Predicate
 
 from ._benchmark import Benchmark
 from ._autotrans import simulate_autotrans
 
 
-def _s3_blackbox(X, U):
-    results = simulate_autotrans(X, U)
-    return results[1]
+def _s3_blackbox(_, T, u):
+    results = simulate_autotrans(_, T, u)
+    return results[0]
 
 
 class BenchmarkS3(Benchmark):
@@ -30,4 +30,4 @@ class BenchmarkS3(Benchmark):
         self.model = Blackbox(_s3_blackbox)
 
     def run(self):
-        return staliro(self.phi, self.preds, self.model, self.options, dual_annealing)
+        return staliro(self.phi, self.preds, self.model, self.options, partitioning)
