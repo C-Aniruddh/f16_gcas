@@ -12,10 +12,7 @@ ALL_BENCHMARKS = ["s3"]
 
 def _load_module(name):
     mod_name = f"benchmark_{name}"
-    try:
-        return import_module(f"benchmarks.{mod_name}")
-    except ModuleNotFoundError:
-        raise RuntimeError(f"Could not find {name} benchmark")
+    return import_module(f"benchmarks.{mod_name}")
 
 
 def _get_benchmark(name):
