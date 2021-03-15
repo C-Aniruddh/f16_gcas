@@ -24,17 +24,18 @@ def _mk_results_dict(results):
 
 
 parser = ArgumentParser(description="Run arch benchmarks")
-parser.add_argument("name", help="Name of benchmark to run", choices=["s3"])
+parser.add_argument("name", help="Name of benchmark to run", choices=["s3"], nargs="+")
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    mod = _load_module(args.name)
-    benchmark = _get_benchmark(args.name, mod)
-    results = benchmark.run()
+    for name in args.name:
+        mod = _load_module(name)
+        benchmark = _get_benchmark(name, mod)
+        results = benchmark.run()
 
-    if not path.isdir("results"):
-        mkdir("results")
+        if not path.isdir("results"):
+            mkdir("results")
 
-    filename = f"partX_trans_{args.name}.Arch21Bench"
-    result_dict = _mk_results_dict(results)
-    savemat(path.join("results", filename), result_dict, appendmat=False)
+        filename = f"partX_trans_{name}.Arch21Bench"
+        result_dict = _mk_results_dict(results)
+        savemat(path.join("results", filename), result_dict, appendmat=False)
