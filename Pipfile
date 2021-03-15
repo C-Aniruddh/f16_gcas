@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 numpy = "*"
 tltk-mtl = "*"
-pandas = "*"
+scipy = "*"
 
 [dev-packages]
 black = "*"
