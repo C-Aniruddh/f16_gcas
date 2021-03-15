@@ -26,4 +26,4 @@ def simulate_autotrans(_, T, u):
         "Array",
     )
 
-    return result.tout, result.yout
+    return results.yout, result.tout
