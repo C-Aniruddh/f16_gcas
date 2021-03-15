@@ -3,15 +3,19 @@
 from argparse import ArgumentParser
 from importlib import import_module
 from os import path, mkdir
+from sys import exit
 
 from scipy.io import savemat
 
-ALL_BENCHMARKS = {"s3"}
+ALL_BENCHMARKS = ["s3"]
 
 
 def _load_module(name):
     mod_name = f"benchmark_{name}"
-    return import_module(f"benchmarks.{mod_name}")
+    try:
+        return import_module(f"benchmarks.{mod_name}")
+    except ModuleNotFoundError:
+        raise RuntimeError(f"Could not find {name} benchmark")
 
 
 def _get_benchmark(name):
@@ -28,20 +32,19 @@ def _mk_results_dict(results):
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Run arch benchmarks")
-    parser.add_argument(
-        "benchmark",
-        choices=ALL_BENCHMARKS,
-        nargs="*",
-        dest="benchmarks",
-        help="Name of benchmark to run",
-    )
+    parser.add_argument("benchmark_names", nargs="*", help="Name of benchmarks to run")
     parser.add_argument("-a", "--all", help="Run all benchmarks", action="store_true")
+    parser.add_argument("-l", "--list", help="List all benchmarks", action="store_true")
     args = parser.parse_args()
 
-    if args.all:
-        args.benchmarks = ALL_BENCHMARKS
+    if args.list:
+        print(ALL_BENCHMARKS)
+        exit(0)
 
-    benchmarks = [_get_benchmark(benchmark) for benchmark in set(args.benchmarks)]
+    if args.all:
+        args.benchmark_names = ALL_BENCHMARKS
+
+    benchmarks = [_get_benchmark(name) for name in set(args.benchmark_names)]
 
     if not benchmarks:
         raise ValueError("Must specify at least one benchmark to run")
