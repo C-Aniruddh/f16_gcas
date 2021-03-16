@@ -11,6 +11,7 @@ pystaliro = {git = "ssh://git@gitlab.com/sbtg/pystaliro"}
 
 [dev-packages]
 black = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
