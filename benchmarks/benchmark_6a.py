@@ -12,12 +12,12 @@ def _6a_blackbox(_, T, u):
     return simulate_autotrans(_, T, u)
 
 
-class BenchmarkS3(Benchmark):
+class Benchmark6a(Benchmark):
     def __init__(self):
         self.phi = "([]_[0, 30] (rpm3000) ->[]_[0, 4] (speed35))"
         self.preds = {
             "rpm3000": Predicate("rpm3000", array([0, 1]), array([3000])),
-            "speed35": Predicate("rpm3000", array([1, 0]), array([35])),
+            "speed35": Predicate("speed35", array([1, 0]), array([35])),
         }
         self.options = Options(
             runs=50,
