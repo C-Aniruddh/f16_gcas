@@ -7,7 +7,7 @@ from sys import exit
 
 from scipy.io import savemat
 
-ALL_BENCHMARKS = ["s3"]
+ALL_BENCHMARKS = {"6a"}
 
 
 def _load_module(name):
@@ -39,9 +39,14 @@ if __name__ == "__main__":
         exit(0)
 
     if args.all:
-        args.benchmark_names = ALL_BENCHMARKS
+        benchmark_names = ALL_BENCHMARKS
+    else:
+        benchmark_names = set(args.benchmark_names)
+        for name in benchmark_names:
+            if name not in ALL_BENCHMARKS:
+                raise ValueError(f"Unknown benchmark {name}")
 
-    benchmarks = [_get_benchmark(name) for name in set(args.benchmark_names)]
+    benchmarks = [_get_benchmark(name) for name in benchmark_names]
 
     if not benchmarks:
         raise ValueError("Must specify at least one benchmark to run")
