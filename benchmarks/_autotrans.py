@@ -4,7 +4,7 @@ from matlab.engine import connect_matlab
 def simulate_autotrans(_, T, u):
     matlab = connect_matlab()
 
-    matlab.workspace["U"] = u
+    matlab.workspace["u"] = u
     matlab.workspace["T"] = T
     result = matlab.sim(
         "autotrans_shift",
