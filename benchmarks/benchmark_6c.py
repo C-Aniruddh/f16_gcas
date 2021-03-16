@@ -9,7 +9,7 @@ from ._benchmark import Benchmark
 
 
 def _6a_blackbox(_, T, u):
-    return simulate_autotrans(_, T, u)
+    return sim_autotrans(_, max(T), T, u)
 
 
 class Benchmark6c(Benchmark):
