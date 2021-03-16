@@ -1,8 +1,8 @@
-from matlab.engine import start_matlab
+from matlab.engine import connect_matlab
 
 
 def simulate_autotrans(_, T, u):
-    matlab = start_matlab()
+    matlab = connect_matlab()
 
     matlab.workspace["U"] = u
     matlab.workspace["T"] = T
