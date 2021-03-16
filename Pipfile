@@ -7,6 +7,7 @@ name = "pypi"
 numpy = "*"
 tltk-mtl = "*"
 scipy = "*"
+pystaliro = {git = "ssh://git@gitlab.com/sbtg/pystaliro"}
 
 [dev-packages]
 black = "*"
