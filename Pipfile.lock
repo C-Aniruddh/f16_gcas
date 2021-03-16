@@ -97,7 +97,7 @@
         },
         "pystaliro": {
             "git": "ssh://git@gitlab.com/sbtg/pystaliro",
-            "ref": "ba54522751a6c23b8959d11622fce3409919e1e0"
+            "ref": "ab990002e8673b810f318c6e62018f28102f2246"
         },
         "python-dateutil": {
             "hashes": [
