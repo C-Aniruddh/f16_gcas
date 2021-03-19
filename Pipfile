@@ -20,5 +20,6 @@ python_version = "3.7"
 allow_prereleases = true
 
 [scripts]
+list = "python3 -m benchmarks --list"
 all = "python3 -m benchmarks --all"
 benchmark = "python3 -m benchmarks"
