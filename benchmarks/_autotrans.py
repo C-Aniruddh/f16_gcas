@@ -1,18 +1,19 @@
-from matlab.engine import connect_matlab
-from numpy import array, hstack
+import matlab.engine
+import numpy as np
 
 
 def sim_autotrans(simT, T, u):
-    matlab = connect_matlab()
+    eng = matlab.engine.connect_matlab()
 
-    matlab.workspace["u"] = u
-    matlab.workspace["T"] = T
+    eng.workspace["u"] = u
+    eng.workspace["T"] = T
 
-    simopt = matlab.simget("Autotrans_shift")
-    simopt = matlab.simset(simopt, "SaveFormat", "Array")
-    timestamps, _, data = matlab.sim(
+    simopt = eng.simget("Autotrans_shift")
+    simopt = eng.simset(simopt, "SaveFormat", "Array")
+    timestamps, _, data = eng.sim(
         "Autotrans_shift", [0, simT], simopt, hstack((T, u)), nargout=3
     )
-    np_data = array(data)
+    np_data = np.array(data)
 
-    return np_data[:, 0:1], array(timestamps)
+    return np_data[:, 0:1], np.array(timestamps)
+
