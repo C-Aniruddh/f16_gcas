@@ -21,3 +21,4 @@ allow_prereleases = true
 
 [scripts]
 all = "python3 -m benchmarks --all"
+benchmark = "python3 -m benchmarks"
