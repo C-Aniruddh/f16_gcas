@@ -12,11 +12,8 @@ def sim_autotrans(simT, T, u):
     simOpt = eng.simset(simOpt, "SaveFormat", "Array")
     timestamps, _, data = eng.sim("Autotrans_shift", simT, simOpt, simInp, nargout=3)
 
-    np_timestamps = np.array(timestamps).flatten()
-    np_data = np.array(data).T
+    np_timestamps = np.array(timestamps, dtype=np.float64).flatten()
+    np_data = np.array(data, dtype=np.float64).T
 
-    print(np_timestamps)
-    print(np_data[0:2])
-
-    return np_data[0:2, :], np_timestamps
+    return np_data[0:2], np_timestamps
 
