@@ -11,7 +11,7 @@ from ._benchmark import Benchmark
 
 
 def _6a_blackbox(_, T, u):
-    return sim_autotrans(_, max(T), T, u)
+    return sim_autotrans(max(T), T, u)
 
 
 class Benchmark6A(Benchmark):
@@ -33,8 +33,8 @@ class Benchmark6A(Benchmark):
             ],
         )
         self.optimizer_options = PartitioningOptions(
-            subregion_file = "./subregions_benchmark6a.csv",
-            region_dimension = 2,
+            subregion_file = "/tmp/subregions_benchmark6a.csv",
+            region_dimension = 10,
             num_partition = 2,
             miscoverage_level = 0.05,
             num_sampling = 20,
