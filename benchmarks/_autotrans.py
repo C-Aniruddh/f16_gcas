@@ -1,22 +1,22 @@
+import matlab
 import matlab.engine
 import numpy as np
 
 
 def sim_autotrans(simT, T, u):
+    simT = matlab.double([0, float(simT)])
+    simInp = matlab.double(np.row_stack((T, u)).T.astype(float).tolist())
+
     eng = matlab.engine.connect_matlab()
+    simOpt = eng.simget("Autotrans_shift")
+    simOpt = eng.simset(simOpt, "SaveFormat", "Array")
+    timestamps, _, data = eng.sim("Autotrans_shift", simT, simOpt, simInp, nargout=3)
 
-    eng.workspace["u"] = u.tolist()
-    eng.workspace["T"] = T.tolist()
+    np_timestamps = np.array(timestamps).flatten()
+    np_data = np.array(data).T
 
-    print("u", u)
-    print("T", T)
+    print(np_timestamps)
+    print(np_data[0:2])
 
-    simopt = eng.simget("Autotrans_shift")
-    simopt = eng.simset(simopt, "SaveFormat", "Array")
-    timestamps, _, data = eng.sim(
-        "Autotrans_shift", [0, float(simT)], simopt, np.row_stack((T, u)).astype(float).tolist(), nargout=3
-    )
-    np_data = np.array(data)
-
-    return np_data[:, 0:1], np.array(timestamps)
+    return np_data[0:2, :], np_timestamps
 
