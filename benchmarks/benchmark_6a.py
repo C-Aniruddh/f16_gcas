@@ -11,7 +11,7 @@ from ._benchmark import Benchmark
 
 
 def _6a_blackbox(_, T, u):
-    return sim_autotrans(max(T).astype(float), T, u)
+    return sim_autotrans(max(T).astype(float), T, u, "6a")
 
 
 class Benchmark6A(Benchmark):
