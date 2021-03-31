@@ -8,10 +8,12 @@ numpy = "*"
 tltk-mtl = "*"
 scipy = "*"
 pystaliro = {git = "ssh://git@gitlab.com/sbtg/pystaliro"}
+part-optimize = {ref = "parallel", git = "ssh://git@gitlab.com/bose1/partX.git"}
 
 [dev-packages]
 black = "*"
 pandas = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"
@@ -23,3 +25,4 @@ allow_prereleases = true
 list = "python3 -m benchmarks --list"
 all = "python3 -m benchmarks --all"
 benchmark = "python3 -m benchmarks"
+tests = "pytest"
