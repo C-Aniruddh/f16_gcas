@@ -9,6 +9,7 @@ tltk-mtl = "*"
 scipy = "*"
 pystaliro = {git = "ssh://git@gitlab.com/sbtg/pystaliro"}
 part-optimize = {ref = "parallel", git = "ssh://git@gitlab.com/bose1/partX.git"}
+aerobench = {git = "https://github.com/qthibeault/aerobenchvvpython.git"}
 
 [dev-packages]
 black = "*"
