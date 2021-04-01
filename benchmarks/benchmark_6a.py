@@ -10,8 +10,9 @@ from ._autotrans import sim_autotrans
 from ._benchmark import Benchmark
 
 
-def _6a_blackbox(_, T, u):
-    return sim_autotrans(max(T).astype(float), T, u, "6a")
+@Blackbox
+def autotrans_blackbox(_, T, u):
+    return sim_autotrans(max(T), T, u, "6a")
 
 
 class Benchmark6A(Benchmark):
@@ -21,7 +22,6 @@ class Benchmark6A(Benchmark):
             "rpm3000": Predicate("rpm3000", array([[0, 1]], dtype=float64), array([3000], dtype=float64)),
             "speed35": Predicate("speed35", array([[1, 0]], dtype=float64), array([35], dtype=float64)),
         }
-        self.model = Blackbox(_6a_blackbox)
         self.options = Options(
             runs=50,
             iterations=100,
@@ -54,7 +54,7 @@ class Benchmark6A(Benchmark):
         return staliro(
                 self.phi,
                 self.preds,
-                self.model,
+                autotrans_blackbox,
                 self.options,
                 partitioning,
                 self.optimizer_options
