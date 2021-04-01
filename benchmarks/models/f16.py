@@ -10,6 +10,9 @@ def f16_blackbox(X, T, _):
     init_cond = [vel, alpha, beta, phi, theta, psi, 0, 0, 0, 0, 0, alt, power]
     step = 1/30
     autopilot = GcasAutopilot(init_mode="roll", stdout=False, gain_str="old")
+
+    print(f"Simulating F16 with initial conditions: {init_cond}")
+
     result = run_f16_sim(init_cond, max(T), autopilot, step, extended_states=True)
     trajectories = result["states"][:, 11:12].T.astype(float64)
     timestamps = array(result["times"], dtype=(float32))
