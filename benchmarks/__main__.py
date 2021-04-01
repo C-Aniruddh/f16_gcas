@@ -22,9 +22,18 @@ def _get_benchmark(name):
 
     return ctor()
 
-
-def _mk_results_dict(results):
-    return {f"run_{i}": result.history for i, result in enumerate(results)}
+def _mk_result_dict(result):
+    return {
+        "theta_plus": result.theta_plus,
+        "theta_minus": result.theta_minus,
+        "theta_undefined": result.theta_undefined,
+        "evl": result.evl,
+        "budgets": result.budgets,
+        "falsification_volumes": result.falsification_volumes,
+        "p_iter": result.p_iter,
+        "number_subregion": result.number_subregion,
+        "fal_ems": result.fal_ems
+    }
 
 
 if __name__ == "__main__":
@@ -57,6 +66,7 @@ if __name__ == "__main__":
         if not path.isdir("results"):
             mkdir("results")
 
-        filename = f"partX_trans_{name}.Arch21Bench"
-        result_dict = _mk_results_dict(results)
+        filename = f"partX_trans_{name}.Arch21Bench.m"
+        result_dict = _mk_result_dict(results)
         savemat(path.join("results", filename), result_dict, appendmat=False)
+
