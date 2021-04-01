@@ -1,5 +1,6 @@
 from aerobench.run_f16_sim import run_f16_sim
 from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
+from numpy import array, float32, float64
 from pystaliro.models import Blackbox
 
 
@@ -10,6 +11,8 @@ def f16_blackbox(X, T, _):
     step = 1/30
     autopilot = GcasAutopilot(init_mode="roll", stdout=False, gain_str="old")
     result = run_f16_sim(init_cond, max(T), autopilot, step, extended_states=True)
+    trajectories = result["states"][:, 11:12].T.astype(float64)
+    timestamps = array(result["times"], dtype=(float32))
 
-    return result["states"][:, "alt"], result["times"]
+    return trajectories, timestamps
 
