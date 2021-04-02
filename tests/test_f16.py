@@ -8,20 +8,12 @@ from pytest import fail
 
 
 def test_f16_blackbox():
-    X = [
-            9,  # power
-            deg2rad(2.1215),  # alpha
-            0,  # beta
-            1000,  # alt
-            540,  # vel
-            -pi / 8,  # phi
-            (-pi / 2) * 0.3,  # theta
-            0  # psi
-    ]
+    X = [-pi / 8, (-pi / 2) * 0.3, 0]
     T = [3.51]
+    U = []
 
     try:
-        f16_blackbox._func(X, T, [])
+        f16_blackbox._func(X, T, U)
     except AssertionError:
         fail("f16 did not successfully integrate")
 
