@@ -1,12 +1,21 @@
+from math import pi
+
 from aerobench.run_f16_sim import run_f16_sim
 from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
-from numpy import array, float32, float64
+from numpy import array, deg2rad, float32, float64
 from pystaliro.models import Blackbox
+
+INITIAL_ALT = 4040
 
 
 @Blackbox
 def f16_blackbox(X, T, _):
-    power, alpha, beta, alt, vel, phi, theta, psi = X
+    power = 9
+    alpha = deg2rad(2.1215)
+    beta = 0
+    alt INITIAL_ALT
+    vel = 540
+    phi, theta, psi = X
     init_cond = [vel, alpha, beta, phi, theta, psi, 0, 0, 0, 0, 0, alt, power]
     step = 1/30
     autopilot = GcasAutopilot(init_mode="roll", stdout=False, gain_str="old")
