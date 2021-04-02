@@ -19,21 +19,24 @@ class BenchmarkF16(Benchmark):
 
         self.phi = "[]_ts:(0, 15) altitude"
         self.preds = {"altitude": Predicate("altitude", a_matrix, b_vector)}
+
+        static_params = [
+            (pi/4) +  array((-pi/20, pi/30)),  # phi
+            (-pi/2)*0.8 + array((0, pi/20)),  # theta
+            (-pi/4) + array((-pi/8, pi/8)),  # psi
+        ]
+
         self.options = Options(
             runs=1,
             iterations=100,
             seed=131013014,
             interval=(0, 15),
-            static_parameters=[
-                (pi/4) +  array((-pi/20, pi/30)),  # phi
-                (-pi/2)*0.8 + array((0, pi/20)),  # theta
-                (-pi/4) + array((-pi/8, pi/8)),  # psi
-            ],
+            static_parameters=static_params,
             signals=[],
         )
         self.optimizer_options = PartitioningOptions(
             subregion_file = "/tmp/subregions_benchmark6a.csv",
-            region_dimension = 8,
+            region_dimension = len(static_params),
             num_partition = 2,
             miscoverage_level = 0.05,
             num_sampling = 20,
