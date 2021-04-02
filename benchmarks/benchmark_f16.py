@@ -25,11 +25,6 @@ class BenchmarkF16(Benchmark):
             seed=131013014,
             interval=(0, 3.51),
             static_parameters=[
-                (0, 10),  # power (int: 0-10)
-                (0, 2 * pi),  # alpha (rad: 0-2pi)
-                (0, 2 * pi),  # beta  (rad: 0-2pi)
-                (1000, 1100),  # altitude (int: 1000-1100)
-                (500, 600),  # velocity (int: 500-600)
                 (0, 2 * pi),  # phi (rad: 0-2pi)
                 (0, 2 * pi),  # theta (rad: 0-2pi)
                 (0, 2 * pi),  # psi (rad: 0-2pi)
