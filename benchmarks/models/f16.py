@@ -13,7 +13,7 @@ def f16_blackbox(X, T, _):
     power = 9
     alpha = deg2rad(2.1215)
     beta = 0
-    alt INITIAL_ALT
+    alt = INITIAL_ALT
     vel = 540
     phi, theta, psi = X
     init_cond = [vel, alpha, beta, phi, theta, psi, 0, 0, 0, 0, 0, alt, power]
