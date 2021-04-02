@@ -4,6 +4,7 @@ from aerobench.run_f16_sim import run_f16_sim
 from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
 from benchmarks.models.f16 import f16_blackbox
 from numpy import array, deg2rad, float32, float64
+from pytest import fail
 
 
 def test_f16_blackbox():
@@ -19,5 +20,8 @@ def test_f16_blackbox():
     ]
     T = [3.51]
 
-    f16_blackbox._func(X, T, [])
+    try:
+        f16_blackbox._func(X, T, [])
+    except AssertionError:
+        fail("f16 did not successfully integrate")
 
