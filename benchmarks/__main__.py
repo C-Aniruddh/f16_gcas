@@ -11,8 +11,7 @@ ALL_BENCHMARKS = {"6a", "f16"}
 
 
 def _load_module(name):
-    mod_name = f"benchmark_{name}"
-    return import_module(f"benchmarks.{mod_name}")
+    return import_module(f"benchmarks.benchmark_{name}")
 
 
 def _get_benchmark(name):
@@ -23,17 +22,19 @@ def _get_benchmark(name):
     return ctor()
 
 def _mk_result_dict(result):
-    return {
-        "theta_plus": result.theta_plus,
-        "theta_minus": result.theta_minus,
-        "theta_undefined": result.theta_undefined,
-        "evl": result.evl,
-        "budgets": result.budgets,
-        "falsification_volumes": result.falsification_volumes,
-        "p_iter": result.p_iter,
-        "number_subregion": result.number_subregion,
-        "fal_ems": result.fal_ems
-    }
+    fields = [
+            "theta_plus",
+            "theta_minus",
+            "theta_undefined",
+            "evl",
+            "budgets",
+            "falsification_volumes",
+            "p_iter",
+            "number_subregions",
+            "fal_ems"
+    ]
+
+    return {field: getattr(result, field) for field in fields)}
 
 
 if __name__ == "__main__":
