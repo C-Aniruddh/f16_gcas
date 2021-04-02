@@ -17,17 +17,17 @@ class BenchmarkF16(Benchmark):
         a_matrix = array([[-1]], dtype=float64)
         b_vector = array([0], dtype=float64)
 
-        self.phi = "[]_ts:(0, inf) altitude"
+        self.phi = "[]_ts:(0, 15) altitude"
         self.preds = {"altitude": Predicate("altitude", a_matrix, b_vector)}
         self.options = Options(
             runs=1,
             iterations=100,
             seed=131013014,
-            interval=(0, 3.51),
+            interval=(0, 15),
             static_parameters=[
-                (0, 2 * pi),  # phi (rad: 0-2pi)
-                (0, 2 * pi),  # theta (rad: 0-2pi)
-                (0, 2 * pi),  # psi (rad: 0-2pi)
+                (pi/4) +  array((-pi/20, pi/30)),  # phi
+                (-pi/2)*0.8 + array((0, pi/20)),  # theta
+                (-pi/4) + array((-pi/8, pi/8)),  # psi
             ],
             signals=[],
         )
