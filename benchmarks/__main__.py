@@ -30,7 +30,7 @@ def _mk_result_dict(result):
             "budgets",
             "falsification_volumes",
             "p_iter",
-            "number_subregions",
+            "number_subregion",
             "fal_ems"
     ]
 
