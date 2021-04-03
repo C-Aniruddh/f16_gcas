@@ -1,4 +1,4 @@
-from numpy import array
+from numpy import array, float64
 from pystaliro import staliro
 from pystaliro.models import Blackbox
 from pystaliro.options import Options, SignalOptions
@@ -19,8 +19,8 @@ class Benchmark6B(Benchmark):
     def __init__(self):
         self.phi = "([]_[0, 30] (rpm3000) -> []_[0, 8] (speed50))"
         self.preds = {
-            "rpm3000": Predicate("rpm3000", array([[0, 1]]), array([3000])),
-            "speed50": Predicate("speed50", array([[1, 0]]), array([50])),
+            "rpm3000": Predicate("rpm3000", array([[0, 1]], dtype=float64), array([3000], dtype=float64)),
+            "speed50": Predicate("speed50", array([[1, 0]], dtype=float64), array([50], dtype=float64)),
         }
         self.options = Options(
             runs=50,
