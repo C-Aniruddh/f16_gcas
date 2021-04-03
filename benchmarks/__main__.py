@@ -67,7 +67,7 @@ if __name__ == "__main__":
         if not path.isdir("results"):
             mkdir("results")
 
-        filename = f"partX_trans_{name}.Arch21Bench.m"
+        filename = f"partX_trans_{name}.Arch21Bench.mat"
         result_dict = _mk_result_dict(results)
         savemat(path.join("results", filename), result_dict, appendmat=False)
 
