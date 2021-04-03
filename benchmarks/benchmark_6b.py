@@ -19,8 +19,8 @@ class Benchmark6B(Benchmark):
     def __init__(self):
         self.phi = "([]_[0, 30] (rpm3000) -> []_[0, 8] (speed50))"
         self.preds = {
-            "rpm3000": Predicate("rpm3000", array([0, 1]), array([3000])),
-            "speed50": Predicate("speed50", array([1, 0]), array([50])),
+            "rpm3000": Predicate("rpm3000", array([[0, 1]]), array([3000])),
+            "speed50": Predicate("speed50", array([[1, 0]]), array([50])),
         }
         self.options = Options(
             runs=50,
