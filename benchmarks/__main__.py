@@ -34,7 +34,7 @@ def _mk_result_dict(result):
             "fal_ems"
     ]
 
-    return {field: getattr(result, field) for field in fields)}
+    return {field: getattr(result, field) for field in fields}
 
 
 if __name__ == "__main__":
