@@ -7,7 +7,7 @@ from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMetho
 from tltk_mtl import Predicate
 
 from ._benchmark import Benchmark
-from .models.autotrans import simulate_autotrans
+from .models.autotrans import sim_autotrans
 
 
 @Blackbox
