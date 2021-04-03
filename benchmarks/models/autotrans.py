@@ -3,6 +3,7 @@ import matlab.engine
 import numpy as np
 
 engs = {}
+MODEL_NAME = "Autotrans_shift"
 
 
 def sim_autotrans(simT, T, u, tag = "default"):
@@ -12,10 +13,12 @@ def sim_autotrans(simT, T, u, tag = "default"):
         engs[tag] = matlab.engine.start_matlab()
 
     eng = engs[tag]
-    TU = matlab.double(T[:, np.newaxis].tolist())
-    U = matlab.double(u.T.tolist())
-    timestamps, _, data, _, _, _ = eng.blackbox_autotrans(0, float(simT), TU, U, nargout=6)
+    simT = matlab.double([0, float(simT)])
+    simInp = matlab.double(np.row_stack((T, u)).T.tolist())
+    simOpt = eng.simget(MODEL_NAME)
+    simOpt = eng.simset(simOpt, "SaveFormat", "Array")
 
+    timestamps, _, data = eng.sim(MODEL_NAME, simT, simOpt, simInp, nargout=3)
     np_timestamps = np.array(timestamps, dtype=np.float32).flatten()
     np_data = np.array(data, dtype=np.float64).T
 
