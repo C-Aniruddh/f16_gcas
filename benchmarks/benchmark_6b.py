@@ -1,15 +1,17 @@
 from numpy import array
 from pystaliro import staliro
+from pystaliro.models import Blackbox
 from pystaliro.options import Options, SignalOptions
 from pystaliro.optimizers import partitioning
+from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
-from ._autotrans import simulate_autotrans
 from ._benchmark import Benchmark
+from .models.autotrans import simulate_autotrans
 
 
 @Blackbox
-def 6b_blackbox(_, T, u):
+def blackbox_6b(_, T, u):
     return sim_autotrans(max(T), T, u, "6b")
 
 
@@ -53,7 +55,7 @@ class Benchmark6B(Benchmark):
         return staliro(
                 self.phi,
                 self.preds,
-                6b_blackbox,
+                blackbox_6b,
                 self.options,
                 partitioning,
                 self.optimizer_options
