@@ -1,7 +1,5 @@
 .vscode/
 slprj/
 
-**/*.slxc
 **/*.pyc
 **/*.m
-**/*.csv
