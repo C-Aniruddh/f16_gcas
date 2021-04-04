@@ -16,6 +16,6 @@ class AutotransTestCase(TestCase):
         simT = 30
         T = inputs["t"].tonumpy()
         U = inputs[["u1", "u2"]].tonumpy()
-        trajectories, _ = simulate_autotrans(simT, T, U)
+        trajectories, _ = sim_autotrans(simT, T, U)
 
         assert_equal(outputs.tonumpy(), trajectories)
