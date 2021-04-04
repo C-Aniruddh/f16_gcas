@@ -21,17 +21,18 @@ def _get_benchmark(name):
 
     return ctor()
 
+
 def _mk_result_dict(result):
     fields = [
-            "theta_plus",
-            "theta_minus",
-            "theta_undefined",
-            "evl",
-            "budgets",
-            "falsification_volumes",
-            "p_iter",
-            "number_subregion",
-            "fal_ems"
+        "theta_plus",
+        "theta_minus",
+        "theta_undefined",
+        "evl",
+        "budgets",
+        "falsification_volumes",
+        "p_iter",
+        "number_subregion",
+        "fal_ems",
     ]
 
     return {field: getattr(result, field) for field in fields}
@@ -70,4 +71,3 @@ if __name__ == "__main__":
         filename = f"partX_trans_{name}.Arch21Bench.mat"
         result_dict = _mk_result_dict(results)
         savemat(path.join("results", filename), result_dict, appendmat=False)
-

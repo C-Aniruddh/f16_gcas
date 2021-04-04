@@ -6,7 +6,7 @@ engs = {}
 MODEL_NAME = "Autotrans_shift"
 
 
-def sim_autotrans(simT, T, u, tag = "default"):
+def sim_autotrans(simT, T, u, tag="default"):
     global engs
 
     if tag not in engs:
@@ -23,4 +23,3 @@ def sim_autotrans(simT, T, u, tag = "default"):
     np_data = np.array(data, dtype=np.float64).T
 
     return np_data, np_timestamps
-
