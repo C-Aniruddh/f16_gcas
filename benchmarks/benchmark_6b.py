@@ -6,7 +6,7 @@ from pystaliro.optimizers import partitioning
 from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
-from ._benchmark import Benchmark
+from .benchmark import Benchmark
 from .models.autotrans import sim_autotrans
 
 

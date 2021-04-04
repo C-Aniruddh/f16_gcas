@@ -9,7 +9,7 @@ from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMetho
 from tltk_mtl import Predicate
 
 from .models.f16 import f16_blackbox
-from ._benchmark import Benchmark
+from .benchmark import Benchmark
 
 
 class BenchmarkF16(Benchmark):
