@@ -1,11 +1,10 @@
 from os import path
 from unittest import TestCase
 
+from benchmarks.models.autotrans import sim_autotrans
 from numpy import array
 from numpy.testing import assert_equal
 from pandas import read_csv
-
-from ._autotrans import simulate_autotrans
 
 
 class AutotransTestCase(TestCase):
