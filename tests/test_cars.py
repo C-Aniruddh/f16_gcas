@@ -14,7 +14,7 @@ def test_cars():
 
     X = []
     T = array([0, 20, 40, 60, 80, 100])
-    U = array([[0, 1], [1, 0], [0, 1], [1, 0], [0, 1], [0, 1]])
+    U = array([[0, 1, 0, 1, 0, 0], [1, 0, 1, 0, 1, 1]])
 
     trajectories, timestamps = cars_blackbox._func(X, T, U)
     real_timestamps = outputs["t"].to_numpy()
