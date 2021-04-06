@@ -21,7 +21,7 @@ class BenchmarkCC4(Benchmark):
             runs=1,
             iterations=200,
             seed=131013014,
-            interval=(0, 1),
+            interval=(0, 100),
             static_parameters=[],
             signals=[
                 SignalOptions((0, 1), factory=ConstantInterpolatorFactory),
