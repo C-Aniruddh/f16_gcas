@@ -3,6 +3,7 @@ from pystaliro import staliro
 from pystaliro.options import Options, SignalOptions
 from pystaliro.optimizers import partitioning
 from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
+from pystaliro.signals import ConstantInterpolatorFactory
 from tltk_mtl import Predicate
 
 from .benchmark import Benchmark
@@ -22,11 +23,16 @@ class BenchmarkCC4(Benchmark):
             seed=131013014,
             interval=(0, 1),
             static_parameters=[],
-            signals=[SignalOptions((0, 1)), SignalOptions((0, 1))],
+            signals=[
+                SignalOptions((0, 1), factory=ConstantInterpolatorFactory),
+                SignalOptions((0, 1), factory=ConstantInterpolatorFactory)
+            ],
         )
+
+        dims = len(self.options.bounds)
         self.optimizer_options = PartitioningOptions(
             subregion_file="/tmp/subregions_benchmarkcc4.csv",
-            region_dimension=len(self.options.bounds),
+            region_dimension=dims,
             num_partition=2,
             miscoverage_level=0.05,
             num_sampling=20,
