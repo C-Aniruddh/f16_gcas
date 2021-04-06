@@ -24,8 +24,8 @@ class BenchmarkCC4(Benchmark):
             interval=(0, 100),
             static_parameters=[],
             signals=[
-                SignalOptions((0, 1), factory=ConstantInterpolatorFactory),
-                SignalOptions((0, 1), factory=ConstantInterpolatorFactory)
+                SignalOptions((0, 1), control_points=20, factory=ConstantInterpolatorFactory),
+                SignalOptions((0, 1), control_points=20, factory=ConstantInterpolatorFactory)
             ],
         )
 
