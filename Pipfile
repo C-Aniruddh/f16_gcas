@@ -3,6 +3,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://$PARTX_USERNAME:'${PARTX_TOKEN}'@gitlab.com/api/v4/projects/24728493/packages/pypi/simple"
+verify_ssl = true
+name = "partX"
+
 [packages]
 numpy = "*"
 tltk-mtl = "*"
