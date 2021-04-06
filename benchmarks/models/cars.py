@@ -11,10 +11,10 @@ MODEL_NAME = "cars"
 def cars_blackbox(X, T, U):
     sim_opts = engine.simget(MODEL_NAME)
     sim_opts = engine.simset(sim_opts, "SaveFormat", "Array")
-    sim_u = mdouble(row_stack(T, U).T.tolist())
+    sim_u = mdouble(row_stack((T, U)).T.tolist())
     sim_t = mdouble([0, max(T)])
 
-    timestamps, _, data = engine.sim(MODEL_NAME, sim_t, sim_opts, sim_u, nargout=2)
+    timestamps, _, data = engine.sim(MODEL_NAME, sim_t, sim_opts, sim_u, nargout=3)
     np_timestamps = array(timestamps, dtype=float32).flatten()
     np_data = array(data, dtype=float64)
 
