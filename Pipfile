@@ -4,16 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [[source]]
-url = "https://$PARTX_USERNAME:'${PARTX_TOKEN}'@gitlab.com/api/v4/projects/24728493/packages/pypi/simple"
+url = "https://$GITLAB_USER:'${GITLAB_TOKEN}'@gitlab.com/api/v4/projects/24728493/packages/pypi/simple"
 verify_ssl = true
 name = "partX"
 
+[[source]]
+url = "https://$GITLAB_USER:'${GITLAB_TOKEN}'@gitlab.com/api/v4/projects/21686781/packages/pypi/simple"
+verify_ssl = true
+name = "pystaliro"
+
 [packages]
 numpy = "*"
-tltk-mtl = "*"
 scipy = "*"
 aerobench = {git = "https://github.com/qthibeault/aerobenchvvpython.git"}
-pystaliro = {git = "ssh://git@gitlab.com/sbtg/pystaliro.git"}
+pystaliro = "~=0.1"
 
 [dev-packages]
 black = "*"
