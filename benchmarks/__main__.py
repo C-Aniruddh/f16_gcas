@@ -7,7 +7,7 @@ from sys import exit
 
 from scipy.io import savemat
 
-ALL_BENCHMARKS = {"6a", "6b", "6c", "f16"}
+ALL_BENCHMARKS = {"6a", "6b", "6c", "f16", "cc4"}
 
 
 def _load_module(name):
