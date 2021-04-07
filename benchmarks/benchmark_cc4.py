@@ -14,6 +14,7 @@ class BenchmarkCC4(Benchmark):
     def __init__(self):
         pred1_Amat = array([[0, 0, 0, -1, 1]], dtype=float64)
         pred1_bvec = array([-8], dtype=float64)
+        const_interp = ConstantInterpolatorFactory()
 
         self.phi = "[]_(0, 65) <>_(0, 30) []_(0, 5) pred1"
         self.preds = {"pred1": Predicate("pred1", pred1_Amat, pred1_bvec)}
@@ -24,8 +25,8 @@ class BenchmarkCC4(Benchmark):
             interval=(0, 100),
             static_parameters=[],
             signals=[
-                SignalOptions((0, 1), control_points=20, factory=ConstantInterpolatorFactory),
-                SignalOptions((0, 1), control_points=20, factory=ConstantInterpolatorFactory)
+                SignalOptions((0, 1), control_points=20, factory=const_interp),
+                SignalOptions((0, 1), control_points=20, factory=const_interp)
             ],
         )
 
