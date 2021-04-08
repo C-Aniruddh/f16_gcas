@@ -11,11 +11,13 @@ TEST_DIR = path.dirname(__file__)
 
 class AutotransTestCase(TestCase):
     def test_correct_output(self):
-        inputs = read_csv(path.join(TEST_DIR, "test_autotrans_inputs.csv"))
-        outputs = read_csv(path.join(TEST_DIR, "test_autotrans_outputs.csv"))
+        inputs = read_csv(path.join(TEST_DIR,  "data", "autotrans_inputs.csv"))
+        outputs = read_csv(path.join(TEST_DIR, "data", "autotrans_outputs.csv"))
 
-        T = inputs["t"].tonumpy()
-        U = inputs[["u1", "u2"]].tonumpy()
-        _, _, trajectories = _dosim(T, U)
+        T = inputs["t"].to_numpy()
+        U_cols = inputs.columns[1:3]
+        U = inputs[U_cols].to_numpy()
 
-        assert_equal(outputs.tonumpy(), trajectories)
+        _, _, trajectories = _dosim(T, U.T)
+
+        assert_equal(outputs.to_numpy(), trajectories)
