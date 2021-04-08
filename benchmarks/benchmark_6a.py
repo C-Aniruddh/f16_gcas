@@ -1,9 +1,9 @@
 from numpy import array, float64
-from pystaliro import staliro
-from pystaliro.models import Blackbox
-from pystaliro.options import Options, SignalOptions
-from pystaliro.optimizers import partitioning
-from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
+from staliro import staliro
+from staliro.models import Blackbox
+from staliro.options import Options, SignalOptions
+from staliro.optimizers import partitioning
+from staliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
 from .models.autotrans import sim_autotrans

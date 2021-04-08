@@ -1,7 +1,7 @@
 from matlab import double as mdouble
 from matlab.engine import start_matlab
 from numpy import array, float32, float64, row_stack
-from pystaliro.models import Blackbox
+from staliro.models import Blackbox
 
 engine = start_matlab()
 MODEL_NAME = "cars"

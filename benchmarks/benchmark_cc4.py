@@ -1,9 +1,9 @@
 from numpy import array, float64
-from pystaliro import staliro
-from pystaliro.options import Options, SignalOptions
-from pystaliro.optimizers import partitioning
-from pystaliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
-from pystaliro.signals import ConstantInterpolatorFactory
+from staliro import staliro
+from staliro.options import Options, SignalOptions
+from staliro.optimizers import partitioning
+from staliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
+from staliro.signals import ConstantInterpolatorFactory
 from tltk_mtl import Predicate
 
 from .benchmark import Benchmark
@@ -26,7 +26,7 @@ class BenchmarkCC4(Benchmark):
             static_parameters=[],
             signals=[
                 SignalOptions((0, 1), control_points=20, factory=const_interp),
-                SignalOptions((0, 1), control_points=20, factory=const_interp)
+                SignalOptions((0, 1), control_points=20, factory=const_interp),
             ],
         )
 
