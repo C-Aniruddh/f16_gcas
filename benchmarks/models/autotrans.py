@@ -36,3 +36,4 @@ def autotrans_blackbox(_, T, U):
 def autotrans_gears_blackbox(_, T, U):
     timestamps, states, _ = _dosim(T, U)
     return states, timestamps
+
