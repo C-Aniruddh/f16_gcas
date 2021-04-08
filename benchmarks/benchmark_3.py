@@ -11,9 +11,9 @@ from .models import autotrans_gears_blackbox
 
 class Benchmark3(Benchmark):
     def __init__(self):
-        self.phi = "[]_[0, 30] ((!(gear1) /\ X (gear1))-> X []_[0, 2.5] (gear1))"
+        self.phi = "[]_[0, 30] (!gear1 /\ X gear1) -> X []_[0, 2.5] (gear1)"
         self.preds = {
-            "gear1": Predicate(array([[1, 0, 0], [-1, 0, 0]]), array([0.5, -1.5]))
+            "gear1": Predicate("gear1", array([[1], [-1]]), array([0.5, -1.5]))
         }
         self.options = Options(
             runs=50,
