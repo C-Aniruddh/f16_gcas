@@ -6,13 +6,8 @@ from staliro.optimizers import partitioning
 from staliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
-from .models.autotrans import sim_autotrans
 from .benchmark import Benchmark
-
-
-@Blackbox
-def autotrans_blackbox(_, T, u):
-    return sim_autotrans(max(T), T, u, "6a")
+from .models import autotrans_blackbox
 
 
 class Benchmark6A(Benchmark):

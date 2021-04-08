@@ -7,12 +7,7 @@ from staliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
 from .benchmark import Benchmark
-from .models.autotrans import sim_autotrans
-
-
-@Blackbox
-def blackbox_6c(_, T, u):
-    return sim_autotrans(max(T), T, u, "6c")
+from .models import autotrans_blackbox
 
 
 class Benchmark6C(Benchmark):
@@ -58,7 +53,7 @@ class Benchmark6C(Benchmark):
         return staliro(
             self.phi,
             self.preds,
-            blackbox_6c,
+            autotrans_blackbox,
             self.options,
             partitioning,
             self.optimizer_options,
