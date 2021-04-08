@@ -29,10 +29,10 @@ def _dosim(T, U):
 @Blackbox
 def autotrans_blackbox(_, T, U):
     timestamps, _, trajectories = _dosim(T, U)
-    return timestamps, trajectories
+    return trajectories, timestamps
 
 
 @Blackbox
 def autotrans_gears_blackbox(_, T, U):
     timestamps, states, _ = _dosim(T, U)
-    return timestamps, states
+    return states, timestamps
