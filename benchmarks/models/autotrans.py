@@ -14,7 +14,7 @@ def _dosim(T, U):
         eng = matlab.engine.start_matlab()
 
     sim_t = matlab.double([0, max(T)])
-    sim_inp = matlab.double([np.row_stack(T, U).T.tolist()])
+    sim_inp = matlab.double([np.row_stack((T, U)).T.tolist()])
     sim_opt = eng.simget(MODEL_NAME)
     sim_opt = eng.simset(sim_opt, "SaveFormat", "Array")
 
