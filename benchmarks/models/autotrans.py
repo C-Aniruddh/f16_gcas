@@ -1,6 +1,6 @@
 from matlab import double as mdouble
 from matlab.engine import start_matlab
-from numpy import row_stack
+from numpy import array, row_stack
 from staliro.models import Blackbox
 
 MODEL_NAME = "Autotrans_shift"
@@ -14,14 +14,14 @@ def _dosim(T, U):
         eng = start_matlab()
 
     sim_t = mdouble([0, max(T)])
-    sim_inp = mdouble([np.row_stack((T, U)).T.tolist()])
+    sim_inp = mdouble([row_stack((T, U)).T.tolist()])
     sim_opt = eng.simget(MODEL_NAME)
     sim_opt = eng.simset(sim_opt, "SaveFormat", "Array")
 
     timestamps, states, data = eng.sim(MODEL_NAME, sim_t, sim_opt, sim_inp, nargout=3)
-    np_timestamps = np.array(timestamps, dtype=np.float32).flatten()
-    np_states = np.array(states, dtype=int)
-    np_data = np.array(data, dtype=np.float64).T
+    np_timestamps = array(timestamps, dtype=np.float32).flatten()
+    np_states = array(states, dtype=int)
+    np_data = array(data, dtype=np.float64).T
 
     return np_timestamps, np_states, np_data
 
