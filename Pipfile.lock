@@ -239,11 +239,11 @@
         },
         "pystaliro": {
             "hashes": [
-                "sha256:00bc7d64262cfabf58581c7b5e61d0cb6b5b0d36ab31fc6c1c6d08715fa1ba20",
-                "sha256:dfe8c5e0978a2bc6a714b9b2e75a70b49e1644fe20a4b758013de2696abdb0f4"
+                "sha256:256d84e5c7afaf322091d2def12ec1e3492ab30708de5516f844b3b8caee8261",
+                "sha256:ab7b2e03e9fc51e35490525ebef9c6b457f967675ef6c43e228d4dd6d240306c"
             ],
             "index": "pypi",
-            "version": "==0.2.1"
+            "version": "==0.2.2"
         },
         "python-dateutil": {
             "hashes": [
