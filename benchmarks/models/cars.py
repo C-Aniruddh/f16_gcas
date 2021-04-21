@@ -1,5 +1,3 @@
-from matlab import double as mdouble
-from matlab.engine import start_matlab
 from numpy import array, float32, float64, row_stack
 from staliro.models import Blackbox
 
@@ -9,6 +7,12 @@ MODEL_NAME = "cars"
 
 @Blackbox
 def cars_blackbox(X, T, U):
+    try:
+        from matlab import double as mdouble
+        from matlab.engine import start_matlab
+    except ImportError:
+        raise NotImplementedError("You need MATLAB python engine installed to use this model")
+
     global eng
 
     if eng is None:
@@ -24,3 +28,4 @@ def cars_blackbox(X, T, U):
     np_data = array(data, dtype=float64)
 
     return np_data, np_timestamps
+
