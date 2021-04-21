@@ -5,7 +5,7 @@ from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
 from numpy import array, deg2rad, float32, float64
 from staliro.models import Blackbox
 
-INITIAL_ALT = 4040
+INITIAL_ALT = 2330
 
 
 @Blackbox

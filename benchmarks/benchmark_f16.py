@@ -27,7 +27,7 @@ class BenchmarkF16(Benchmark):
         ]
 
         self.options = Options(
-            runs=1,
+            runs=50,
             iterations=100,
             seed=131013014,
             interval=(0, 15),
@@ -35,16 +35,16 @@ class BenchmarkF16(Benchmark):
             signals=[],
         )
         self.optimizer_options = PartitioningOptions(
-            subregion_file="/tmp/subregions_benchmark6a.csv",
+            subregion_file="/tmp/subregions_benchmark_f16.csv",
             region_dimension=len(static_params),
             num_partition=2,
             miscoverage_level=0.05,
-            num_sampling=20,
+            num_sampling=30,
             level=[0.5, 0.75, 0.9, 0.95],
             min_volume=0.001,
             max_budget=15_000,
             fal_num=50_000,
-            n_model=20,
+            n_model=1000,
             n_bo=10,
             n_b=100,
             sample_method=SamplingMethod.BAYESIAN,
