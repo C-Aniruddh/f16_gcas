@@ -13,7 +13,7 @@ INITIAL_ALT = 2330
 def get_static_params(static_params_map: OrderedDict):
     static_params = []
     for param, config in static_params_map.items():
-        if config['enabled':]:
+        if config['enabled']:
             static_params.append(config['range'])
     return static_params
 
