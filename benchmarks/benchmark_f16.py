@@ -8,7 +8,7 @@ from staliro.optimizers import partitioning
 from staliro.optimizers.partitioning import PartitioningOptions, SamplingMethod
 from tltk_mtl import Predicate
 
-from .models.f16 import f16_blackbox, get_static_params
+from .models.f16 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
 from collections import OrderedDict
@@ -20,73 +20,12 @@ class BenchmarkF16(Benchmark):
 
         self.phi = "[]_ts:(0, 15) altitude"
         self.preds = {"altitude": Predicate("altitude", a_matrix, b_vector)}
-
-        static_params_map = OrderedDict({
-            'air_speed': {
-                'enabled': False,
-                'default': 540
-            },
-            'angle_of_attack': {
-                'enabled': False,
-                'default': deg2rad(2.1215)
-            },
-            'angle_of_sideslip': {
-                'enabled': False,
-                'default': 0
-            },
-            'roll': {
-                'enabled': True,
-                'default': None,
-                'range': (pi / 4) + array((-pi / 20, pi / 30)),
-            },
-            'pitch': {
-                'enabled': True,
-                'default': None,
-                'range': (-pi / 2) * 0.8 + array((0, pi / 20)),
-            },
-            'yaw': {
-                'enabled': True,
-                'default': None,
-                'range': (-pi / 4) + array((-pi / 8, pi / 8)), 
-            },
-            'roll_rate': {
-                'enabled': False,
-                'default': 0
-            },
-            'pitch_rate': {
-                'enabled': False,
-                'default': 0
-            },
-            'yaw_rate': {
-                'enabled': False,
-                'default': 0
-            },
-            'northward_displacement': {
-                'enabled': False,
-                'default': 0
-            },
-            'eastward_displacement': {
-                'enabled': False,
-                'default': 0
-            },
-            'altitude': {
-                'enabled': False,
-                'default': 2330
-            },
-            'engine_power_lag': {
-                'enabled': False,
-                'default': 9
-            }
-        })
-
-        static_params = get_static_params(static_params_map)
-        
         self.options = Options(
             runs=50,
             iterations=100,
             seed=131013014,
             interval=(0, 15),
-            static_parameters=static_params,
+            static_parameters=get_static_params(F16_PARAM_MAP),
             signals=[],
         )
         self.optimizer_options = PartitioningOptions(
