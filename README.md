@@ -26,9 +26,9 @@ Commands
 --------
 | Command |Description |
 |---------|------------|
-|`pipenv run list`| Print all available benchmarks |
-|`pipenv run benchmark benchmark [benchmark, ...]` | Run specific benchmark(s) |
-|`pipenv run all` | Run all available benchmarks |
+|`poetry run python -m benchmark benchmark [benchmark, ...]` | Run specific benchmark(s) |
+|`poetry run python -m benchmarks --all` | Run all available benchmarks |
+|`poetry run python -m benchmarks --list`|Print all available benchmarks|
 
 Output
 ------
