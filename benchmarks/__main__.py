@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser
+from datetime import timedelta
 from importlib import import_module
 from os import path, mkdir
 from sys import exit
 
 from scipy.io import savemat
+import math
 
 ALL_BENCHMARKS = {"6a", "6b", "6c", "f16", "cc4"}
 
@@ -22,20 +24,28 @@ def _get_benchmark(name):
     return ctor()
 
 
-def _mk_result_dict(result):
-    fields = [
-        "theta_plus",
-        "theta_minus",
-        "theta_undefined",
-        "evl",
-        "budgets",
-        "falsification_volumes",
-        "p_iter",
-        "number_subregion",
-        "fal_ems",
-    ]
+def _mk_iter_dict(iteration):
+    return {"robustness": iteration.robustness, "sample": iteration.sample}
 
-    return {field: getattr(result, field) for field in fields}
+def _best_rob(run):
+    min_rob = math.inf
+    for iter in run.history:
+        if iter.robustness < min_rob:
+            min_rob = iter.robustness
+    
+    return min_rob
+
+
+def _mk_result_dict(result):
+    return {
+        "history": result.history,
+        "runtime": result.run_time / timedelta(milliseconds=1),
+        "best_rob": _best_rob(result)
+    }
+
+
+def _mk_results_dict(results):
+    return {f"result_{i}": _mk_result_dict(result) for i, result in enumerate(results.runs)}
 
 
 if __name__ == "__main__":
@@ -68,6 +78,6 @@ if __name__ == "__main__":
         if not path.isdir("results"):
             mkdir("results")
 
-        filename = f"partX_trans_{name}.Arch21Bench.mat"
-        result_dict = _mk_result_dict(results)
+        filename = f"random_uniform_{name}.Arch21Bench.mat"
+        result_dict = _mk_results_dict(results)
         savemat(path.join("results", filename), result_dict, appendmat=False)
