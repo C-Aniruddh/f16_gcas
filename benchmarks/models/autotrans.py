@@ -1,5 +1,5 @@
 from numpy import array, float32, float64, row_stack
-from staliro.models import Blackbox
+from staliro.models import blackbox
 
 MODEL_NAME = "Autotrans_shift"
 eng = None
@@ -29,13 +29,13 @@ def _dosim(T, U):
         return np_timestamps, np_data[:, 2], np_data[:, 0:2]
 
 
-@Blackbox
+@blackbox
 def autotrans_blackbox(_, T, U):
     timestamps, _, trajectories = _dosim(T, U)
     return trajectories.T, timestamps
 
 
-@Blackbox
+@blackbox
 def autotrans_gears_blackbox(_, T, U):
     timestamps, states, _ = _dosim(T, U)
     return array([states]), timestamps

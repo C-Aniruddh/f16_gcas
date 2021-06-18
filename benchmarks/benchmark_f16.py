@@ -2,14 +2,14 @@ from math import pi
 
 from numpy import array, float64, deg2rad
 from staliro import staliro
-from staliro.models import Blackbox
+from staliro.models import blackbox
 from staliro.options import StaliroOptions
 from staliro.optimizers.uniform_random import UniformRandom
-from partx.partitioning import PartX
+# from partx.partitioning import PartX
 from partx.models import SamplingMethod, PartitioningOptions
 from tltk_mtl import Predicate
 
-from staliro.specification import Specification
+from staliro.specification import PredicateProps, TLTK
 
 from .models.f16 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
@@ -20,17 +20,17 @@ USE_PARTX = False
 
 class BenchmarkF16(Benchmark):
     def __init__(self):
-        a_matrix = array([[-1]], dtype=float64)
-        b_vector = array([0], dtype=float64)
+        # a_matrix = array([[-1]], dtype=float64)
+        # b_vector = array([0], dtype=float64)
 
-        phi = "[]_ts:(0, 15) altitude"
-        preds = {"altitude": Predicate("altitude", a_matrix, b_vector)}
+        phi = "[](0, 15) altitude >= 0"
+        preds = {"altitude": PredicateProps(0, 'float64')}
 
-        self.specification = Specification(phi, preds)
+        self.specification = TLTK(phi, preds)
 
         static_params = get_static_params(F16_PARAM_MAP)
 
-        self.options =StaliroOptions(
+        self.options = StaliroOptions(
             runs=50,
             iterations=100,
             seed=131013014,

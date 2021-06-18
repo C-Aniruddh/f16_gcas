@@ -4,7 +4,7 @@ from math import pi
 from aerobench.run_f16_sim import run_f16_sim
 from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
 from numpy import array, deg2rad, float32, float64, ndarray
-from staliro.models import Blackbox
+from staliro.models import blackbox
 
 
 F16_PARAM_MAP = OrderedDict({
@@ -88,10 +88,10 @@ def _compute_initial_conditions(X, param_map):
     return conditions
 
 
-@Blackbox
+@blackbox
 def f16_blackbox(X, T, _):
     init_cond = _compute_initial_conditions(X, F16_PARAM_MAP)
-    print(init_cond)
+    # print(init_cond)
     step = 1 / 30
     autopilot = GcasAutopilot(init_mode="roll", stdout=False, gain_str="old")
 

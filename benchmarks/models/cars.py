@@ -1,11 +1,11 @@
 from numpy import array, float32, float64, row_stack
-from staliro.models import Blackbox
+from staliro.models import blackbox
 
 eng = None
 MODEL_NAME = "cars"
 
 
-@Blackbox
+@blackbox
 def cars_blackbox(X, T, U):
     try:
         from matlab import double as mdouble
