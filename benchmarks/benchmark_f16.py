@@ -5,7 +5,7 @@ from staliro import staliro
 from staliro.models import blackbox
 from staliro.options import StaliroOptions
 from staliro.optimizers.uniform_random import UniformRandom
-# from partx.partitioning import PartX
+from partx.partitioning import PartX
 from partx.models import SamplingMethod, PartitioningOptions
 from tltk_mtl import Predicate
 
@@ -16,7 +16,7 @@ from .benchmark import Benchmark
 
 from collections import OrderedDict
 
-USE_PARTX = False
+USE_PARTX = True
 
 class BenchmarkF16(Benchmark):
     def __init__(self):
@@ -40,8 +40,7 @@ class BenchmarkF16(Benchmark):
         )
 
         if USE_PARTX:
-            self.optimizer = PartX()
-            self.optimizer_options = PartitioningOptions(
+            self.optimizer = PartX(
                 subregion_file="/home/aniruddhchandratre/._/arch/run_results/f16_partX_test/subregions_benchmark_f16.csv",
                 region_dimension=len(static_params),
                 num_partition=2,
@@ -62,18 +61,9 @@ class BenchmarkF16(Benchmark):
             self.optimizer = UniformRandom()
 
     def run(self):
-        if USE_PARTX:
-            return staliro(
-                self.specification,
-                f16_blackbox,
-                self.options,
-                self.optimizer,
-                self.optimizer_options,
-            )
-        else:
-            return staliro(
-                self.specification,
-                f16_blackbox,
-                self.options,
-                self.optimizer
-            )
+        return staliro(
+            self.specification,
+            f16_blackbox,
+            self.options,
+            self.optimizer
+        )
