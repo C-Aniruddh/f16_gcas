@@ -112,7 +112,7 @@ test = ["pytest (>=5.0.1)", "pytest-xdist", "hypothesis (>=3.58)"]
 
 [[package]]
 name = "partx"
-version = "0.0.3"
+version = "0.0.4"
 description = "PartX Optimizer to use with PSY-Taliro"
 category = "main"
 optional = false
@@ -130,8 +130,8 @@ scipy = "^1.6.3"
 [package.source]
 type = "git"
 url = "git@gitlab.com:bose1/partX.git"
-reference = "continued_sampling"
-resolved_reference = "d4ac8ba78a9fa03860ea28fa703933341cf3b267"
+reference = "module"
+resolved_reference = "deecd1ec34562bf59aeb0e66b3667157592a70be"
 
 [[package]]
 name = "pillow"
@@ -273,7 +273,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1, <3.10"
-content-hash = "e3b3cf6509ece98a2b8e5b123c376029561d035724240bb5418b248dff70b51f"
+content-hash = "be3ddb35cecbe478dd1fcf684a81db7e2367b60b0a25fd1aff1444d1d92113ff"
 
 [metadata.files]
 aerobench = []
