@@ -14,9 +14,17 @@ from staliro.specification import PredicateProps, TLTK
 from .models.f16 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
+import pathlib
+
 from collections import OrderedDict
 
 USE_PARTX = True
+
+home_directory = pathlib.Path().home()
+result_directory = home_directory.joinpath('arch_results')
+result_directory.mkdir(exist_ok=True)
+
+subregion_file = result_directory.joinpath("subregions_f16.csv")
 
 class BenchmarkF16(Benchmark):
     def __init__(self):
@@ -41,7 +49,7 @@ class BenchmarkF16(Benchmark):
 
         if USE_PARTX:
             self.optimizer = PartX(
-                subregion_file="/home/aniruddhchandratre/._/arch/run_results/f16_partX_test/subregions_benchmark_f16.csv",
+                subregion_file=str(subregion_file.resolve()),
                 region_dimension=len(static_params),
                 num_partition=2,
                 miscoverage_level=0.05,
