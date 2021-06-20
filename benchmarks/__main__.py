@@ -69,5 +69,6 @@ if __name__ == "__main__":
             mkdir("results")
 
         filename = f"partX_trans_{name}.Arch21Bench.mat"
-        result_dict = _mk_result_dict(results)
+        # result_dict = _mk_result_dict(results)
+        result_dict = {}
         savemat(path.join("results", filename), result_dict, appendmat=False)

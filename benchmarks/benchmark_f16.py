@@ -39,8 +39,8 @@ class BenchmarkF16(Benchmark):
         static_params = get_static_params(F16_PARAM_MAP)
 
         self.options = StaliroOptions(
-            runs=50,
-            iterations=100,
+            runs=1,
+            iterations=1,
             seed=131013014,
             interval=(0, 15),
             static_parameters=static_params,
