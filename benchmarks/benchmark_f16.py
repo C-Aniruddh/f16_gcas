@@ -3,7 +3,7 @@ from math import pi
 from numpy import array, float64, deg2rad
 from staliro import staliro
 from staliro.models import blackbox
-from staliro.options import StaliroOptions
+from staliro.options import Options
 from staliro.optimizers.uniform_random import UniformRandom
 from partx.partitioning import PartX
 from partx.models import SamplingMethod, PartitioningOptions
@@ -19,12 +19,16 @@ import pathlib
 from collections import OrderedDict
 
 USE_PARTX = True
+BENCHMARK_NAME = "f16_alt2330_continued_sampling_3000"  # format is "f16_alt<alt>_method_budget"
 
 home_directory = pathlib.Path().home()
 result_directory = home_directory.joinpath('arch_results')
 result_directory.mkdir(exist_ok=True)
 
-subregion_file = result_directory.joinpath("subregions_f16.csv")
+benchmark_result_directory = result_directory.joinpath(BENCHMARK_NAME)
+benchmark_result_directory.mkdir(exist_ok=True)
+
+subregion_file = benchmark_result_directory.joinpath("subregions_f16.csv")
 
 class BenchmarkF16(Benchmark):
     def __init__(self):
@@ -38,9 +42,9 @@ class BenchmarkF16(Benchmark):
 
         static_params = get_static_params(F16_PARAM_MAP)
 
-        self.options = StaliroOptions(
-            runs=1,
-            iterations=1,
+        self.options = Options(
+            runs=50,
+            iterations=100,
             seed=131013014,
             interval=(0, 15),
             static_parameters=static_params,
@@ -70,8 +74,8 @@ class BenchmarkF16(Benchmark):
 
     def run(self):
         return staliro(
-            self.specification,
             f16_blackbox,
-            self.options,
-            self.optimizer
+            self.specification,
+            self.optimizer,
+            self.options
         )
