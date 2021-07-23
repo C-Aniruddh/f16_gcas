@@ -19,7 +19,7 @@ import pathlib
 from collections import OrderedDict
 
 USE_PARTX = True
-BENCHMARK_NAME = "f16_alt2330_continued_sampling_3000"  # format is "f16_alt<alt>_method_budget"
+BENCHMARK_NAME = "f16_alt2400_continued_sampling_10000"  # format is "f16_alt<alt>_method_budget"
 
 home_directory = pathlib.Path().home()
 result_directory = home_directory.joinpath('arch_results')
@@ -43,8 +43,8 @@ class BenchmarkF16(Benchmark):
         static_params = get_static_params(F16_PARAM_MAP)
 
         self.options = Options(
-            runs=50,
-            iterations=100,
+            runs=1,
+            iterations=1,
             seed=131013014,
             interval=(0, 15),
             static_parameters=static_params,
@@ -60,7 +60,7 @@ class BenchmarkF16(Benchmark):
                 num_sampling=30,
                 level=[0.5, 0.75, 0.9, 0.95],
                 min_volume=0.001,
-                max_budget=3000,
+                max_budget=10000,
                 fal_num=50_000,
                 n_model=1000,
                 n_bo=10,

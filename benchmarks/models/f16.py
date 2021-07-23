@@ -57,7 +57,7 @@ F16_PARAM_MAP = OrderedDict({
     },
     'altitude': {
         'enabled': False,
-        'default': 2330
+        'default': 2400
     },
     'engine_power_lag': {
         'enabled': False,
