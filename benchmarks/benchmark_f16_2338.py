@@ -11,14 +11,14 @@ from tltk_mtl import Predicate
 
 from staliro.specification import PredicateProps, TLTK
 
-from .models.f16 import f16_blackbox, get_static_params, F16_PARAM_MAP
+from .models.f16_alt_2338 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
 import pathlib
 
 from collections import OrderedDict
 
-BENCHMARK_NAME = "f16_alt2400_continued_sampling_10000"  # format is "f16_alt<alt>_method_budget"
+BENCHMARK_NAME = "f16_alt2338_continued_sampling_10000"  # format is "f16_alt<alt>_method_budget"
 
 home_directory = pathlib.Path().home()
 result_directory = home_directory.joinpath('arch_results')
@@ -29,7 +29,7 @@ benchmark_result_directory.mkdir(exist_ok=True)
 
 subregion_file = benchmark_result_directory.joinpath("subregions_f16.csv")
 
-class BenchmarkF16(Benchmark):
+class BenchmarkF16_2338(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
@@ -58,7 +58,7 @@ class BenchmarkF16(Benchmark):
             num_sampling=30,
             level=[0.5, 0.75, 0.9, 0.95],
             min_volume=0.001,
-            max_budget=5000,
+            max_budget=10000,
             fal_num=50_000,
             n_model=1000,
             n_bo=10,

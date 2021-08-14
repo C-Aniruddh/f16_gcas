@@ -29,7 +29,7 @@ benchmark_result_directory.mkdir(exist_ok=True)
 
 subregion_file = benchmark_result_directory.joinpath("subregions_f16.csv")
 
-class BenchmarkF16(Benchmark):
+class BenchmarkF16UR(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
@@ -50,23 +50,7 @@ class BenchmarkF16(Benchmark):
             signals=[],
         )
 
-        self.optimizer = PartX(
-            subregion_file=str(subregion_file.resolve()),
-            region_dimension=len(static_params),
-            num_partition=2,
-            miscoverage_level=0.05,
-            num_sampling=30,
-            level=[0.5, 0.75, 0.9, 0.95],
-            min_volume=0.001,
-            max_budget=5000,
-            fal_num=50_000,
-            n_model=1000,
-            n_bo=10,
-            n_b=100,
-            sample_method=SamplingMethod.BAYESIAN,
-            part_num=1,
-            continue_sampling_budget=100
-        )
+        self.optimizer = UniformRandom()
 
     def run(self):
         return staliro(
