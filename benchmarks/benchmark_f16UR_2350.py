@@ -5,7 +5,6 @@ from staliro import staliro
 from staliro.models import blackbox
 from staliro.options import Options
 from partx.models import SamplingMethod, PartitioningOptions
-from tltk_mtl import Predicate
 
 from staliro.specification import PredicateProps, TLTK
 

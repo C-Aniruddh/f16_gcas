@@ -7,7 +7,6 @@ from staliro.options import Options
 from staliro.optimizers.uniform_random import UniformRandom
 from partx.partitioning import PartX
 from partx.models import SamplingMethod, PartitioningOptions
-from tltk_mtl import Predicate
 
 from staliro.specification import PredicateProps, TLTK
 

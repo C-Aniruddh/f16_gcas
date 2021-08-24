@@ -5,8 +5,6 @@ from staliro import staliro
 from staliro.models import blackbox
 from staliro.options import Options
 from staliro.optimizers.uniform_random import UniformRandom
-from tltk_mtl import Predicate
-
 from staliro.specification import PredicateProps, TLTK
 
 from .models.f16_alt_2338 import f16_blackbox, get_static_params, F16_PARAM_MAP

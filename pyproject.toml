@@ -10,8 +10,7 @@ numpy = "^1.20.3"
 scipy = "^1.6.3"
 aerobench = {git = "https://github.com/qthibeault/aerobenchvvpython.git"}
 psy-taliro = "1.0.0a11"
-tltk-mtl = "^0.0.27"
-partx = "^0.0.41"
+partx = "0.1.1"
 
 [tool.poetry.dev-dependencies]
 
