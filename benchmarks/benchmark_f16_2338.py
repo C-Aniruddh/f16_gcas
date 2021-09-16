@@ -21,7 +21,7 @@ MAX_BUDGET = 5000
 NUMBER_OF_MACRO_REPLICATIONS = 50
 ALTITUDE = 2338
 
-class BenchmarkF16_2300(Benchmark):
+class BenchmarkF16_2338(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
