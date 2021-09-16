@@ -5,8 +5,8 @@ from staliro import staliro
 from staliro.models import blackbox
 from staliro.options import Options
 from staliro.optimizers.uniform_random import UniformRandom
-from partx.partitioning import PartX
-from partx.models import SamplingMethod, PartitioningOptions
+
+from partx.interfaces.run_psytaliro import PartX 
 
 from staliro.specification import PredicateProps, TLTK
 
@@ -17,18 +17,11 @@ import pathlib
 
 from collections import OrderedDict
 
-BENCHMARK_NAME = "f16_alt2350_continued_sampling_10000"  # format is "f16_alt<alt>_method_budget"
+MAX_BUDGET = 5000
+NUMBER_OF_MACRO_REPLICATIONS = 50
+ALTITUDE = 2350
 
-home_directory = pathlib.Path().home()
-result_directory = home_directory.joinpath('arch_results')
-result_directory.mkdir(exist_ok=True)
-
-benchmark_result_directory = result_directory.joinpath(BENCHMARK_NAME)
-benchmark_result_directory.mkdir(exist_ok=True)
-
-subregion_file = benchmark_result_directory.joinpath("subregions_f16.csv")
-
-class BenchmarkF16_2350(Benchmark):
+class BenchmarkF16_2300(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
@@ -42,7 +35,7 @@ class BenchmarkF16_2350(Benchmark):
 
         self.options = Options(
             runs=1,
-            iterations=1,
+            iterations=MAX_BUDGET,
             seed=131013014,
             interval=(0, 15),
             static_parameters=static_params,
@@ -50,21 +43,19 @@ class BenchmarkF16_2350(Benchmark):
         )
 
         self.optimizer = PartX(
-            subregion_file=str(subregion_file.resolve()),
-            region_dimension=len(static_params),
-            num_partition=2,
-            miscoverage_level=0.05,
-            num_sampling=30,
-            level=[0.5, 0.75, 0.9, 0.95],
-            min_volume=0.001,
-            max_budget=10000,
-            fal_num=50_000,
-            n_model=1000,
-            n_bo=10,
-            n_b=100,
-            sample_method=SamplingMethod.BAYESIAN,
-            part_num=1,
-            continue_sampling_budget=100
+            benchmark_name="f16_alt{}_budget_{}".format(ALTITUDE, MAX_BUDGET),
+            test_function_dimension=len(static_params),
+            initialization_budget=10,
+            continued_sampling_budget=100,
+            number_of_BO_samples=[10],
+            number_of_samples_gen_GP=100,
+            branching_factor=2,
+            nugget_mean=0,
+            nugget_std_dev=0.001,
+            alpha=[0.95],
+            delta=0.001,
+            number_of_macro_replications=NUMBER_OF_MACRO_REPLICATIONS,
+            initial_seed=1000
         )
 
     def run(self):

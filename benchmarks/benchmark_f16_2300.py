@@ -17,8 +17,8 @@ import pathlib
 
 from collections import OrderedDict
 
-MAX_BUDGET = 1500
-NUMBER_OF_MACRO_REPLICATIONS = 1
+MAX_BUDGET = 5000
+NUMBER_OF_MACRO_REPLICATIONS = 50
 ALTITUDE = 2300
 
 class BenchmarkF16_2300(Benchmark):
