@@ -4,7 +4,7 @@ from math import pi
 from aerobench.run_f16_sim import run_f16_sim
 from aerobench.examples.gcas.gcas_autopilot import GcasAutopilot
 from numpy import array, deg2rad, float32, float64, ndarray
-from staliro.models import blackbox
+from staliro.models import blackbox, SimulationResult
 
 
 F16_PARAM_MAP = OrderedDict({
@@ -99,4 +99,4 @@ def f16_blackbox(X, T, _):
     trajectories = result["states"][:, 11:12].T.astype(float64)
     timestamps = array(result["times"], dtype=(float32))
 
-    return trajectories, timestamps
+    return SimulationResult(trajectories, timestamps)
