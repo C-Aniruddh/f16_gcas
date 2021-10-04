@@ -1,6 +1,18 @@
 .vscode/
 slprj/
 result_files/
+f16_final_results/
+f16_final_results/
+f16_final_results_UR/
+result_files_1/
+result_files_check_here/
+result_files_final_alpha/
+result_files_temp/
+f16_final_results_UR/
+result_files_1/
+result_files_check_here/
+result_files_final_alpha/
+result_files_temp/
 
 **/*.pyc
 **/*.mat

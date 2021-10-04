@@ -6,22 +6,22 @@ from staliro.models import blackbox
 from staliro.options import Options
 from staliro.optimizers.uniform_random import UniformRandom
 
-from partx.interfaces.run_psytaliro import PartX 
+from partx.interfaces.run_psystaliro_UR import PartX_UR 
 
 from staliro.specification import PredicateProps, TLTK
 
-from .models.f16_alt_2338 import f16_blackbox, get_static_params, F16_PARAM_MAP
+from .models.f16_alt_2400 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
 import pathlib
 
 from collections import OrderedDict
 
-MAX_BUDGET = 5000
+NUMBER_OF_SAMPLES = 5000
 NUMBER_OF_MACRO_REPLICATIONS = 50
-ALTITUDE = 2338
+ALTITUDE = 2400
 
-class BenchmarkF16_2338(Benchmark):
+class BenchmarkF16UR_2400(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
@@ -41,27 +41,14 @@ class BenchmarkF16_2338(Benchmark):
             static_parameters=static_params,
             signals=[],
         )
-
-        self.optimizer = PartX(
-            benchmark_name="f16_alt{}_budget_{}".format(ALTITUDE, MAX_BUDGET),
-            test_function_dimension=len(static_params),
-            initialization_budget = 30,
-            continued_sampling_budget=100,
-            number_of_BO_samples=[10],
-            NGP=10000,
-            M = 500,
-            R = 20,
-            branching_factor=2,
-            nugget_mean=0,
-            nugget_std_dev=0.001,
-            alpha=[0.05],
-            delta=0.001,
+    
+    self.optimizer = PartX_UR(
             number_of_macro_replications=NUMBER_OF_MACRO_REPLICATIONS,
+            benchmark_name="f16_alt{}_budget_{}".format(str(ALTITUDE).replace(".", "_"), MAX_BUDGET),
             initial_seed=1000,
-            fv_quantiles_for_gp = [0.5,0.95,0.99],
-            fv_confidence_at = 0.95,
-            points_for_unif_sampling = 1,
-            results_folder = "f16_final_results"
+            test_function_dimension=len(static_params),
+            number_of_samples = NUMBER_OF_SAMPLES,
+            results_folder = "f16_final_results_UR",
         )
 
     def run(self):

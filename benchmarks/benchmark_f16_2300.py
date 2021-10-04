@@ -45,17 +45,23 @@ class BenchmarkF16_2300(Benchmark):
         self.optimizer = PartX(
             benchmark_name="f16_alt{}_budget_{}".format(ALTITUDE, MAX_BUDGET),
             test_function_dimension=len(static_params),
-            initialization_budget=10,
+            initialization_budget = 30,
             continued_sampling_budget=100,
             number_of_BO_samples=[10],
-            number_of_samples_gen_GP=100,
+            NGP=10000,
+            M = 500,
+            R = 20,
             branching_factor=2,
             nugget_mean=0,
             nugget_std_dev=0.001,
-            alpha=[0.95],
+            alpha=[0.05],
             delta=0.001,
             number_of_macro_replications=NUMBER_OF_MACRO_REPLICATIONS,
-            initial_seed=1000
+            initial_seed=1000,
+            fv_quantiles_for_gp = [0.5,0.95,0.99],
+            fv_confidence_at = 0.95,
+            points_for_unif_sampling = 1,
+            results_folder = "f16_final_results"
         )
 
     def run(self):

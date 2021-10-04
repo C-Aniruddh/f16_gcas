@@ -10,7 +10,7 @@ from partx.interfaces.run_psytaliro import PartX
 
 from staliro.specification import PredicateProps, TLTK
 
-from .models.f16_alt_2338 import f16_blackbox, get_static_params, F16_PARAM_MAP
+from .models.f16_alt_2338_5 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
 import pathlib
@@ -19,9 +19,9 @@ from collections import OrderedDict
 
 MAX_BUDGET = 5000
 NUMBER_OF_MACRO_REPLICATIONS = 50
-ALTITUDE = 2338
+ALTITUDE = 2338.5
 
-class BenchmarkF16_2338(Benchmark):
+class BenchmarkF16_2338_5(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)
@@ -43,7 +43,7 @@ class BenchmarkF16_2338(Benchmark):
         )
 
         self.optimizer = PartX(
-            benchmark_name="f16_alt{}_budget_{}".format(ALTITUDE, MAX_BUDGET),
+            benchmark_name="f16_alt{}_budget_{}".format(str(ALTITUDE).replace(".","_"), MAX_BUDGET),
             test_function_dimension=len(static_params),
             initialization_budget = 30,
             continued_sampling_budget=100,

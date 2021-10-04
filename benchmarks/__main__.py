@@ -7,7 +7,8 @@ from sys import exit
 
 from scipy.io import savemat
 
-ALL_BENCHMARKS = {"f16UR_2300", "f16UR_2338", "f16UR_2350", "f16_2300", "f16_2338", "f16_2350"}
+ALL_BENCHMARKS = {"f16UR_2300", "f16UR_2400", "f16UR_2338","f16UR_2350", "f16UR_2338_4","f16UR_2338_6", "f16UR_2350", 
+                "f16_2300", "f16_2338", "f16_2350", "f16_2400", "f16_2338_4","f16_2338_5", "f16_2338_6", "f16_2338_2"}
 
 
 def _load_module(name):
