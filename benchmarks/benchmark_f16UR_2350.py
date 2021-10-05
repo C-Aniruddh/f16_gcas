@@ -17,7 +17,7 @@ import pathlib
 
 from collections import OrderedDict
 
-NUMBER_OF_SAMPLES = 5000
+MAX_BUDGET = 5000
 NUMBER_OF_MACRO_REPLICATIONS = 50
 ALTITUDE = 2350
 
@@ -42,14 +42,14 @@ class BenchmarkF16UR_2350(Benchmark):
             signals=[],
         )
     
-    self.optimizer = PartX_UR(
-            number_of_macro_replications=NUMBER_OF_MACRO_REPLICATIONS,
-            benchmark_name="f16_alt{}_budget_{}".format(str(ALTITUDE).replace(".", "_"), MAX_BUDGET),
-            initial_seed=1000,
-            test_function_dimension=len(static_params),
-            number_of_samples = NUMBER_OF_SAMPLES,
-            results_folder = "f16_final_results_UR",
-        )
+        self.optimizer = PartX_UR(
+                number_of_macro_replications=NUMBER_OF_MACRO_REPLICATIONS,
+                benchmark_name="f16_alt{}_budget_{}".format(ALTITUDE, MAX_BUDGET),
+                initial_seed=1000,
+                test_function_dimension=len(static_params),
+                number_of_samples = MAX_BUDGET,
+                results_folder = "f16_final_results_UR_replications",
+            )
 
     def run(self):
         return staliro(

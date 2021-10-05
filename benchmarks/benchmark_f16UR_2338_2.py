@@ -10,7 +10,7 @@ from partx.interfaces.run_psystaliro_UR import PartX_UR
 
 from staliro.specification import PredicateProps, TLTK
 
-from .models.f16_alt_2338_4 import f16_blackbox, get_static_params, F16_PARAM_MAP
+from .models.f16_alt_2338_2 import f16_blackbox, get_static_params, F16_PARAM_MAP
 from .benchmark import Benchmark
 
 import pathlib
@@ -19,9 +19,9 @@ from collections import OrderedDict
 
 MAX_BUDGET = 5000
 NUMBER_OF_MACRO_REPLICATIONS = 50
-ALTITUDE = 2338.4
+ALTITUDE = 2338.2
 
-class BenchmarkF16UR_2338_4(Benchmark):
+class BenchmarkF16UR_2338_2(Benchmark):
     def __init__(self):
         # a_matrix = array([[-1]], dtype=float64)
         # b_vector = array([0], dtype=float64)

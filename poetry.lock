@@ -126,7 +126,7 @@ python-versions = ">=3.7,<3.11"
 
 [[package]]
 name = "partx"
-version = "0.0.49"
+version = "0.0.51"
 description = "PartX - A family of stochastic optimzers"
 category = "main"
 optional = false
